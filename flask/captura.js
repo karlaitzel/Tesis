@@ -1,14 +1,14 @@
-// The buttons to start & stop stream and to capture the image
+// Botones para iniciar y detener la transmision y capturar la imagen 
 var btnStart = document.getElementById( "btn-start" );
 var btnStop = document.getElementById( "btn-stop" );
 var btnCapture = document.getElementById( "btn-capture" );
 
-// The stream & capture
-var stream = document.getElementById( "stream" );
-var capture = document.getElementById( "capture" );
-var snapshot = document.getElementById( "snapshot" );
+// Transmision y captura 
+var stream = document.getElementById( "Camara" );
+var capture = document.getElementById( "Captura" );
+var snapshot = document.getElementById( "Imagen" );
 
-// The video stream
+// Camara de video
 var cameraStream = null;
 
 // Attach listeners
@@ -16,7 +16,7 @@ btnStart.addEventListener( "click", startStreaming );
 btnStop.addEventListener( "click", stopStreaming );
 btnCapture.addEventListener( "click", captureSnapshot );
 
-// Start Streaming
+// Inicio de la camara 
 function startStreaming() {
 
     var mediaSupport = 'mediaDevices' in navigator;
@@ -34,18 +34,18 @@ function startStreaming() {
         })
         .catch( function( err ) {
 
-            console.log( "Unable to access camera: " + err );
+            console.log( "No se puede acceder a la cámara: " + err );
         });
     }
     else {
 
-        alert( 'Your browser does not support media devices.' );
+        alert( 'No es compatible' );
 
         return;
     }
 }
 
-// Stop Streaming
+// Alto de la camara 
 function stopStreaming() {
 
     if( null != cameraStream ) {
