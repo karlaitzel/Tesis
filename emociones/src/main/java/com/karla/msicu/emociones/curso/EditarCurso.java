@@ -33,7 +33,7 @@ public class EditarCurso extends javax.swing.JFrame {
     private void setData() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String query = "select * from curso where idcurso = ?";
         PreparedStatement preparedStatemet = connection.prepareStatement(query);
         preparedStatemet.setInt(1, id);
@@ -46,7 +46,7 @@ public class EditarCurso extends javax.swing.JFrame {
     private void saveCurso() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String nombre = CampoNombre.getText();
         if(!nombre.equals("")){
             String query = "update curso set nombre = ? where idcurso = ?";

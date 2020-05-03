@@ -18,12 +18,12 @@ import java.util.logging.Logger;
  * @author Developer
  */
 public class EditarTema extends javax.swing.JFrame {
-    Curso parentView = null;
+    Tema parentView = null;
     int id = 0;
     /**
      * Creates new form NuevoCurso
      */
-    public EditarTema(Curso parentView, int id) throws SQLException, ClassNotFoundException {
+    public EditarTema(Tema parentView, int id) throws SQLException, ClassNotFoundException {
         initComponents();
         this.parentView = parentView;
         this.id = id;
@@ -33,26 +33,29 @@ public class EditarTema extends javax.swing.JFrame {
     private void setData() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
-        String query = "select * from curso where idcurso = ?";
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
+        String query = "select * from tema where idtema = ?";
         PreparedStatement preparedStatemet = connection.prepareStatement(query);
         preparedStatemet.setInt(1, id);
         ResultSet rs = preparedStatemet.executeQuery();
         rs.first();
         CampoNombre.setText(rs.getString("nombre"));
+        CampoCurso.setText(rs.getString("curso_idcurso"));        
         connection.close();
     }
     
     private void saveCurso() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String nombre = CampoNombre.getText();
+        String curso_idcurso = CampoCurso.getText();
         if(!nombre.equals("")){
-            String query = "update curso set nombre = ? where idcurso = ?";
+            String query = "update tema set nombre = ?,curso_idcurso = ?  where idtema = ?";
             PreparedStatement preparedStatemet = connection.prepareStatement(query);
             preparedStatemet.setString (1, nombre);
-            preparedStatemet.setInt(2, id);
+            preparedStatemet.setString (2, curso_idcurso);
+            preparedStatemet.setInt(3, id);
             preparedStatemet.execute();
             parentView.fillTable();
             connection.close();
@@ -72,6 +75,8 @@ public class EditarTema extends javax.swing.JFrame {
         GuardarNombre = new javax.swing.JButton();
         EtiquetaNombre = new javax.swing.JLabel();
         CampoNombre = new javax.swing.JTextField();
+        EtiquetaCurso = new javax.swing.JLabel();
+        CampoCurso = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Curso");
@@ -83,23 +88,33 @@ public class EditarTema extends javax.swing.JFrame {
             }
         });
 
-        EtiquetaNombre.setText("Nombre del curso");
+        EtiquetaNombre.setText("Nombre del tema");
+
+        EtiquetaCurso.setText("Curso al que pertenece");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CampoNombre)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EtiquetaNombre)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(153, 153, 153)
-                                .addComponent(GuardarNombre)))
-                        .addGap(0, 156, Short.MAX_VALUE)))
+                                .addContainerGap()
+                                .addComponent(EtiquetaNombre))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(GuardarNombre))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(EtiquetaCurso)))
+                        .addGap(0, 156, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoCurso)
+                            .addComponent(CampoNombre))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,10 +122,14 @@ public class EditarTema extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(EtiquetaNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(GuardarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EtiquetaCurso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GuardarNombre)
                 .addContainerGap())
         );
 
@@ -126,7 +145,9 @@ public class EditarTema extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarNombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CampoCurso;
     private javax.swing.JTextField CampoNombre;
+    private javax.swing.JLabel EtiquetaCurso;
     private javax.swing.JLabel EtiquetaNombre;
     private javax.swing.JButton GuardarNombre;
     // End of variables declaration//GEN-END:variables

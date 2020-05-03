@@ -47,7 +47,7 @@ public class Curso extends javax.swing.JFrame {
     public void fillTable() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String query = "select * from curso";
         PreparedStatement preparedStatemet = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatemet.executeQuery();
@@ -204,7 +204,7 @@ public class Curso extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = null;
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
             String query = "delete from curso where idcurso = ?";
             PreparedStatement preparedStatemet = connection.prepareStatement(query);
             preparedStatemet.setInt(1, id);

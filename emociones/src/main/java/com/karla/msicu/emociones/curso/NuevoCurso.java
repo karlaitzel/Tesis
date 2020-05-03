@@ -29,7 +29,7 @@ public class NuevoCurso extends javax.swing.JFrame {
     private void saveCurso() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String nombre = CampoNombre.getText();
         if(!nombre.equals("")){
             String query = "insert into curso (nombre) values (?)";

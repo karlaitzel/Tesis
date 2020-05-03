@@ -38,7 +38,7 @@ public class Tema extends javax.swing.JFrame {
     private void eventListeners(){
         Editar.setEnabled(false);
         Borrar.setEnabled(false);
-        Cursos.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+        Temas.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
             Editar.setEnabled(true);
             Borrar.setEnabled(true);
         });
@@ -47,12 +47,12 @@ public class Tema extends javax.swing.JFrame {
     public void fillTable() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String query = "select * from tema";
         PreparedStatement preparedStatemet = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatemet.executeQuery();
-        Cursos = new javax.swing.JTable(buildTableModel(resultSet));
-        jScrollPane1.setViewportView(Cursos);
+        Temas = new javax.swing.JTable(buildTableModel(resultSet));
+        jScrollPane1.setViewportView(Temas);
         connection.close();
         eventListeners();
     }
@@ -93,15 +93,15 @@ public class Tema extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Cursos = new javax.swing.JTable();
+        Temas = new javax.swing.JTable();
         Nuevo = new javax.swing.JButton();
         Editar = new javax.swing.JButton();
         Borrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Curso");
+        setTitle("Tema");
 
-        Cursos.setModel(new javax.swing.table.DefaultTableModel(
+        Temas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -124,7 +124,7 @@ public class Tema extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Cursos);
+        jScrollPane1.setViewportView(Temas);
 
         Nuevo.setText("Nuevo");
         Nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -180,17 +180,17 @@ public class Tema extends javax.swing.JFrame {
 
     private void NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoActionPerformed
         // TODO add your handling code here:
-        NuevoCurso nuevoCurso = new NuevoCurso(this);
-        nuevoCurso.setVisible(rootPaneCheckingEnabled);
+        NuevoTema nuevoTema = new NuevoTema(this);
+        nuevoTema.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_NuevoActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         int column = 0;
-        int row = Cursos.getSelectedRow();
-        int id = (int) Cursos.getModel().getValueAt(row, column);
+        int row = Temas.getSelectedRow();
+        int id = (int) Temas.getModel().getValueAt(row, column);
         try {
-            EditarCurso editarCurso = new EditarCurso(this,id);
-            editarCurso.setVisible(true);
+            EditarTema editarTema = new EditarTema(this,id);
+            editarTema.setVisible(true);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Tema.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -199,13 +199,13 @@ public class Tema extends javax.swing.JFrame {
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
         int column = 0;
-        int row = Cursos.getSelectedRow();
-        int id = (int) Cursos.getModel().getValueAt(row, column);
+        int row = Temas.getSelectedRow();
+        int id = (int) Temas.getModel().getValueAt(row, column);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = null;
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones", "emociones", "emociones");
-            String query = "delete from curso where idcurso = ?";
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
+            String query = "delete from tema where idtema = ?";
             PreparedStatement preparedStatemet = connection.prepareStatement(query);
             preparedStatemet.setInt(1, id);
             preparedStatemet.execute();
@@ -218,9 +218,9 @@ public class Tema extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Borrar;
-    private javax.swing.JTable Cursos;
     private javax.swing.JButton Editar;
     private javax.swing.JButton Nuevo;
+    private javax.swing.JTable Temas;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package com.karla.msicu.emociones;
 
 import com.karla.msicu.emociones.curso.Curso;
+import com.karla.msicu.emociones.curso.Tema;
 
 /**
  *
@@ -35,7 +36,7 @@ public class Principal extends javax.swing.JFrame {
         BarraMenu = new javax.swing.JMenuBar();
         Profesor = new javax.swing.JMenu();
         Curso = new javax.swing.JMenuItem();
-        Curso1 = new javax.swing.JMenuItem();
+        Tema = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -52,13 +53,13 @@ public class Principal extends javax.swing.JFrame {
         });
         Profesor.add(Curso);
 
-        Curso1.setText("Tema");
-        Curso1.addActionListener(new java.awt.event.ActionListener() {
+        Tema.setText("Tema");
+        Tema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Curso1ActionPerformed(evt);
+                TemaActionPerformed(evt);
             }
         });
-        Profesor.add(Curso1);
+        Profesor.add(Tema);
 
         BarraMenu.add(Profesor);
 
@@ -84,9 +85,11 @@ public class Principal extends javax.swing.JFrame {
         curso.setVisible(true);
     }//GEN-LAST:event_CursoActionPerformed
 
-    private void Curso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso1ActionPerformed
+    private void TemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TemaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Curso1ActionPerformed
+        Tema tema = new Tema();
+        tema.setVisible(true);
+    }//GEN-LAST:event_TemaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,8 +129,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraMenu;
     private javax.swing.JMenuItem Curso;
-    private javax.swing.JMenuItem Curso1;
     private javax.swing.JMenu Profesor;
+    private javax.swing.JMenuItem Tema;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;

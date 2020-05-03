@@ -34,12 +34,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CursoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Curso1">
+            <MenuItem class="javax.swing.JMenuItem" name="Tema">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tema"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Curso1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TemaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
