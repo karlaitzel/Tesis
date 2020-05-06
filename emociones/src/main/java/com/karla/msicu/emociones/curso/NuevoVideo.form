@@ -28,6 +28,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="CampoNombre" max="32767" attributes="0"/>
+                  <Component id="CampoReproducido" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="EtiquetaNombre" min="-2" max="-2" attributes="0"/>
@@ -35,11 +36,10 @@
                               <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                               <Component id="GuardarNombre" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="EtiquetaCurso" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="EtiquetaReproducido" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="156" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="CampoCurso" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -53,10 +53,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="CampoNombre" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Component id="EtiquetaCurso" min="-2" max="-2" attributes="0"/>
+              <Component id="EtiquetaReproducido" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="CampoCurso" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <Component id="CampoReproducido" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="GuardarNombre" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -74,36 +74,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="EtiquetaNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre del tema"/>
+        <Property name="text" type="java.lang.String" value="Nombre del video"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="CampoNombre">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CampoNombreActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="EtiquetaCurso">
+    <Component class="javax.swing.JLabel" name="EtiquetaReproducido">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Curso al que pertenece"/>
+        <Property name="text" type="java.lang.String" value="Reproducido"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="CampoCurso">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CampoCursoActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
+    <Component class="javax.swing.JTextField" name="CampoReproducido">
     </Component>
   </SubComponents>
 </Form>

@@ -16,12 +16,12 @@ import java.util.logging.Logger;
  *
  * @author Developer
  */
-public class NuevoTema extends javax.swing.JFrame {
+public class NuevoVideo extends javax.swing.JFrame {
     Tema parentView = null;
     /**
      * Creates new form NuevoCurso
      */
-    public NuevoTema(Tema parentView) {
+    public NuevoVideo(Tema parentView) {
         initComponents();
         this.parentView = parentView;
     }
@@ -31,12 +31,13 @@ public class NuevoTema extends javax.swing.JFrame {
         Connection connection = null;
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String nombre = CampoNombre.getText();
-        String curso_idcurso = CampoCurso.getValue();
+        String curso_idcurso = CampoReproducido.getText();
         if(!nombre.equals("")){
-            String query = "insert into tema (nombre,curso_idcurso) values (?,?)";
+            String query = "insert into video (nombre,reproducido,tema_idtema) values (?,No,?)";
             PreparedStatement preparedStatemet = connection.prepareStatement(query);
             preparedStatemet.setString (1, nombre);
-            preparedStatemet.setString (2, curso_idcurso);            
+            preparedStatemet.setString (2, reproducido);
+            preparedStatemet.setString (3, tema_idtema);
             preparedStatemet.execute();
             parentView.fillTable();
             connection.close();
@@ -56,8 +57,8 @@ public class NuevoTema extends javax.swing.JFrame {
         GuardarNombre = new javax.swing.JButton();
         EtiquetaNombre = new javax.swing.JLabel();
         CampoNombre = new javax.swing.JTextField();
-        EtiquetaCurso = new javax.swing.JLabel();
-        CampoCurso = new javax.swing.JComboBox<>();
+        EtiquetaReproducido = new javax.swing.JLabel();
+        CampoReproducido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Tema");
@@ -69,22 +70,9 @@ public class NuevoTema extends javax.swing.JFrame {
             }
         });
 
-        EtiquetaNombre.setText("Nombre del tema");
+        EtiquetaNombre.setText("Nombre del video");
 
-        CampoNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoNombreActionPerformed(evt);
-            }
-        });
-
-        EtiquetaCurso.setText("Curso al que pertenece");
-
-        CampoCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        CampoCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoCursoActionPerformed(evt);
-            }
-        });
+        EtiquetaReproducido.setText("Reproducido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,15 +82,15 @@ public class NuevoTema extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CampoNombre)
+                    .addComponent(CampoReproducido)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EtiquetaNombre)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(153, 153, 153)
                                 .addComponent(GuardarNombre))
-                            .addComponent(EtiquetaCurso))
-                        .addGap(0, 156, Short.MAX_VALUE))
-                    .addComponent(CampoCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(EtiquetaReproducido))
+                        .addGap(0, 156, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,10 +101,10 @@ public class NuevoTema extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(EtiquetaCurso)
+                .addComponent(EtiquetaReproducido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CampoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(CampoReproducido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(GuardarNombre)
                 .addContainerGap())
         );
@@ -128,25 +116,15 @@ public class NuevoTema extends javax.swing.JFrame {
         try {
             saveCurso();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(NuevoTema.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NuevoVideo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_GuardarNombreActionPerformed
 
-    private void CampoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoNombreActionPerformed
-
-    private void CampoCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCursoActionPerformed
-        CampoCurso JComboBox<String> JcomboBox = new JComboBox<>(new String[] {"One", "Two", "Three", "Four"});
-        JcomboBox.setEditable(true);
-        getContentPane().add(JcomboBox);// TODO add your handling code here:
-    }//GEN-LAST:event_CampoCursoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CampoCurso;
     private javax.swing.JTextField CampoNombre;
-    private javax.swing.JLabel EtiquetaCurso;
+    private javax.swing.JTextField CampoReproducido;
     private javax.swing.JLabel EtiquetaNombre;
+    private javax.swing.JLabel EtiquetaReproducido;
     private javax.swing.JButton GuardarNombre;
     // End of variables declaration//GEN-END:variables
 }
