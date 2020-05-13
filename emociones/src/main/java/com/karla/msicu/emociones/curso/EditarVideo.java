@@ -34,13 +34,13 @@ public class EditarVideo extends javax.swing.JFrame {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = null;
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
-        String query = "select * from tema where idtema = ?";
+        String query = "select * from video where idtema = ?";
         PreparedStatement preparedStatemet = connection.prepareStatement(query);
         preparedStatemet.setInt(1, id);
         ResultSet rs = preparedStatemet.executeQuery();
         rs.first();
         CampoNombre.setText(rs.getString("nombre"));
-        CampoCurso.setText(rs.getString("curso_idcurso"));        
+        CampoVideo.setText(rs.getString("curso_idcurso"));        
         connection.close();
     }
     
@@ -49,7 +49,7 @@ public class EditarVideo extends javax.swing.JFrame {
         Connection connection = null;
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/emociones?serverTimezone=UTC", "emociones", "emociones");
         String nombre = CampoNombre.getText();
-        String curso_idcurso = CampoCurso.getText();
+        String curso_idcurso = CampoVideo.getText();
         if(!nombre.equals("")){
             String query = "update tema set nombre = ?,curso_idcurso = ?  where idtema = ?";
             PreparedStatement preparedStatemet = connection.prepareStatement(query);
@@ -76,7 +76,7 @@ public class EditarVideo extends javax.swing.JFrame {
         EtiquetaNombre = new javax.swing.JLabel();
         CampoNombre = new javax.swing.JTextField();
         EtiquetaCurso = new javax.swing.JLabel();
-        CampoCurso = new javax.swing.JTextField();
+        CampoVideo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Curso");
@@ -88,9 +88,9 @@ public class EditarVideo extends javax.swing.JFrame {
             }
         });
 
-        EtiquetaNombre.setText("Nombre del tema");
+        EtiquetaNombre.setText("Nombre del vídeo");
 
-        EtiquetaCurso.setText("Curso al que pertenece");
+        EtiquetaCurso.setText("Reproducido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +113,7 @@ public class EditarVideo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CampoCurso)
+                            .addComponent(CampoVideo)
                             .addComponent(CampoNombre))))
                 .addContainerGap())
         );
@@ -127,7 +127,7 @@ public class EditarVideo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(EtiquetaCurso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CampoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GuardarNombre)
                 .addContainerGap())
@@ -145,8 +145,8 @@ public class EditarVideo extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarNombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CampoCurso;
     private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextField CampoVideo;
     private javax.swing.JLabel EtiquetaCurso;
     private javax.swing.JLabel EtiquetaNombre;
     private javax.swing.JButton GuardarNombre;

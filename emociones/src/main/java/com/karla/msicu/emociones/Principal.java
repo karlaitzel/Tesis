@@ -37,6 +37,7 @@ public class Principal extends javax.swing.JFrame {
         Profesor = new javax.swing.JMenu();
         Curso = new javax.swing.JMenuItem();
         Tema = new javax.swing.JMenuItem();
+        Video = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -60,6 +61,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Profesor.add(Tema);
+
+        Video.setText("Video");
+        Video.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VideoActionPerformed(evt);
+            }
+        });
+        Profesor.add(Video);
 
         BarraMenu.add(Profesor);
 
@@ -90,6 +99,10 @@ public class Principal extends javax.swing.JFrame {
         Tema tema = new Tema();
         tema.setVisible(true);
     }//GEN-LAST:event_TemaActionPerformed
+
+    private void VideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VideoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VideoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,6 +144,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Curso;
     private javax.swing.JMenu Profesor;
     private javax.swing.JMenuItem Tema;
+    private javax.swing.JMenuItem Video;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;

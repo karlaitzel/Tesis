@@ -24,6 +24,7 @@ public class NuevoTema extends javax.swing.JFrame {
     public NuevoTema(Tema parentView) {
         initComponents();
         this.parentView = parentView;
+                fillCombos();
     }
     
     private void saveCurso() throws ClassNotFoundException, SQLException{
@@ -79,7 +80,7 @@ public class NuevoTema extends javax.swing.JFrame {
 
         EtiquetaCurso.setText("Curso al que pertenece");
 
-        CampoCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CampoCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Curso 1", "Item 3", "Item 4" }));
         CampoCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampoCursoActionPerformed(evt);

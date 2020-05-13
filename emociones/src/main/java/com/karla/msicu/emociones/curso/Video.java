@@ -39,8 +39,8 @@ public class Video extends javax.swing.JFrame {
         Editar.setEnabled(false);
         Borrar.setEnabled(false);
         Videos.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
-            Editar.setEnabled(true);
-            Borrar.setEnabled(true);
+        Editar.setEnabled(true);
+        Borrar.setEnabled(true);
         });
     }
     

@@ -36,7 +36,7 @@ public class NuevoVideo extends javax.swing.JFrame {
             String query = "insert into video (nombre,reproducido,tema_idtema) values (?,No,?)";
             PreparedStatement preparedStatemet = connection.prepareStatement(query);
             preparedStatemet.setString (1, nombre);
-            preparedStatemet.setString (2, reproducido);
+            preparedStatemet.setString (2, "No");
             preparedStatemet.setString (3, tema_idtema);
             preparedStatemet.execute();
             parentView.fillTable();
