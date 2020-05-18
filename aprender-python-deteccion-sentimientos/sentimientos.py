@@ -2,7 +2,7 @@ import cv2, glob, random, math, numpy as np, dlib
 from sklearn.svm import SVC
 
 
-emotions = ["miedo", "feliz", "neutral", "tristeza"] #lista de sentimientos
+emotions = ["aburrido", "confundido","frustrado","concentrado", "neutral","feliz"] #lista de sentimientos
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") #Archivo de marcas faciales
@@ -127,13 +127,17 @@ print("Mean value lin svm: %.3f" %np.mean(accur_lin)) #hacemos 10 ejecuciones pa
 
 frame=cv2.imread('dataset\\2.png') #aqui se añade la imagen que quieres procesar pero aqui solo se carga para el resultado final
 #ploteamos el resultado
-cv2.putText(frame, "Miedo: {}".format(p1), (10, 30),
+cv2.putText(frame, "Concentrado: {}".format(p1), (10, 30),
  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 cv2.putText(frame, "Feliz: {:.2f}".format(p2), (10, 60),
  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 cv2.putText(frame, "Neutral: {}".format(p3), (10, 90),
  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-cv2.putText(frame, "Triste: {:.2f}".format(p4), (10, 120),
+cv2.putText(frame, "Aburrido: {:.2f}".format(p4), (10, 120),
+ cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+cv2.putText(frame, "Confundido: {:.2f}".format(p5), (10, 150),
+ cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+cv2.putText(frame, "Frustrado: {:.2f}".format(p6), (10, 180),
  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
  
 
